@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-primary font-sans;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thumb-brand-gradient-from {
+    scrollbar-color: #0a1a3c #1e3a8a;
+  }
+
+  .scrollbar-track-background {
+    scrollbar-color: #0a1a3c #0a192f;
+  }
+
+  /* Custom scrollbar for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 10px;
+    background: #0a1a3c;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #0a1a3c 0%, #1e3a8a 100%);
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0a1a3c 100%);
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-2 rounded-lg font-medium transition-all duration-200 shadow-md hover:scale-105 hover:shadow-lg;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-light;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-secondary-light;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white hover:bg-accent-light;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-lg p-6 transition-all duration-200 hover:scale-105 hover:shadow-2xl;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 rounded-lg border border-surface focus:outline-none focus:ring-2 focus:ring-brand-gradient-from focus:border-transparent bg-surface text-primary;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-r from-primary to-secondary;
+  }
+}
+
+/* Custom Animations */
+.hover-tilt {
+  transition: transform 0.2s ease;
+}
+
+.hover-tilt:hover {
+  transform: rotate(5deg);
+}
+
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-glow {
+  transition: box-shadow 0.2s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+}
