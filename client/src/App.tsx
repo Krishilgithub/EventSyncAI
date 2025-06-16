@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
 // Lazy load components
@@ -14,14 +14,16 @@ const Signup = lazy(() => import("./pages/Signup"));
 const Navbar = lazy(() => import("./components/layout/Navbar"));
 const Footer = lazy(() => import("./components/layout/Footer"));
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const isDashboard = location.pathname.startsWith("/dashboard");
   return (
-    <Router>
       <div className="min-h-screen flex flex-col">
+      {!isDashboard && (
         <Suspense fallback={<div className="h-16 bg-primary animate-pulse" />}>
           <Navbar />
         </Suspense>
-
+      )}
         <main className="flex-grow">
           <Suspense
             fallback={
@@ -41,11 +43,19 @@ function App() {
             </Routes>
           </Suspense>
         </main>
-
+      {!isDashboard && (
         <Suspense fallback={<div className="h-64 bg-dark animate-pulse" />}>
           <Footer />
         </Suspense>
+      )}
       </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
